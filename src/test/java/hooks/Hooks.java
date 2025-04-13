@@ -87,7 +87,7 @@ public class Hooks {
                     System.out.println("Report Directory: " + latestDir.getAbsolutePath());
                     
                     // Look for the PDF report
-                    File pdfReport = new File(latestDir, "target/extent-reports/extent-pdf-report.pdf");
+                    File pdfReport = new File(latestDir, "ExtentPdf.pdf");
                     if (pdfReport.exists()) {
                         System.out.println("PDF Report: " + pdfReport.getAbsolutePath() + " (Size: " + pdfReport.length() + " bytes)");
                     } else {
