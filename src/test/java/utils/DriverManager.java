@@ -133,10 +133,10 @@ public class DriverManager {
         options.addArguments("--remote-allow-origins=*");
         
         // Headless mode if required (Replit environment or explicitly set)
-        if (headlessMode) {
+        //if (headlessMode) {
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
-        }
+        //}
         
         // Extra options for containerized environments like Replit
         if (IS_REPLIT) {
