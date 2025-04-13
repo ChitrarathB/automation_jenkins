@@ -13,6 +13,6 @@ Feature: Navigate and Verify Example Website
     Given I navigate to The Internet demo site
     When I click on the Form Authentication link
     Then I should be on the login page
-    When I enter username "test2" and password "pass2!"
+    When I enter username "test_with_diff_branch" and password "pass2!"
     Then I should see a success message
 
