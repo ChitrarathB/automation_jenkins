@@ -9,6 +9,7 @@
 name: Java CI with Maven
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -31,7 +32,7 @@ jobs:
       run: mvn clean test
 
     - name: Archive report
-      uses: actions/upload-artifacts@v4
+      uses: actions/upload-artifact@v4
       with: 
         name: cucumberHtml
         path: ./cucumber-reports/*.html
