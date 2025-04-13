@@ -35,5 +35,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with: 
         name: cucumberHtml
-        path: ./cucumber-reports/*.html
+        path: ./target/cucumber-reports/*.html
 
