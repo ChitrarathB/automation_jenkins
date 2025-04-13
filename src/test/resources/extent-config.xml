@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report Theme -->
+        <theme>standard</theme>
+
+        <!-- Document Encoding -->
+        <encoding>UTF-8</encoding>
+
+        <!-- Protocol for script and stylesheets -->
+        <protocol>https</protocol>
+
+        <!-- Title of the document -->
+        <documentTitle>Cucumber Selenium Test Automation Report</documentTitle>
+
+        <!-- Report name - displayed at top-nav -->
+        <reportName>Website Navigation Test Report</reportName>
+
+        <!-- Report headline -->
+        <reportHeadline>Cucumber Selenium Test Automation Report</reportHeadline>
+
+        <!-- Global date format override -->
+        <dateFormat>yyyy-MM-dd</dateFormat>
+
+        <!-- Global time format override -->
+        <timeFormat>HH:mm:ss</timeFormat>
+
+        <!-- Custom CSS -->
+        <css></css>
+
+        <!-- Custom JavaScript -->
+        <scripts></scripts>
+
+        <!-- Metadata -->
+        <systemInfo>
+            <kv>
+                <key>Project</key>
+                <value>Cucumber Selenium Test Automation Framework</value>
+            </kv>
+            <kv>
+                <key>Feature</key>
+                <value>Website Navigation and Authentication Testing</value>
+            </kv>
+            <kv>
+                <key>Build Version</key>
+                <value>1.0</value>
+            </kv>
+        </systemInfo>
+    </configuration>
+</extentreports>

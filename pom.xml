@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>cucumber-selenium-extent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cucumber.version>7.11.0</cucumber.version>
+        <selenium.version>4.15.0</selenium.version>
+        <junit.version>5.9.2</junit.version>
+        <webdrivermanager.version>5.6.2</webdrivermanager.version>
+        <extentreports.version>5.0.9</extentreports.version>
+        <extentreports-cucumber7-adapter.version>1.9.0</extentreports-cucumber7-adapter.version>
+    </properties>
+
+    <dependencies>
+        <!-- Cucumber JVM -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.9.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>1.9.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
+            <version>1.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Selenium WebDriver -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- HtmlUnit Driver for headless testing -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>4.8.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- WebDriverManager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <!-- Extent Reports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>${extentreports-cucumber7-adapter.version}</version>
+        </dependency>
+        <!-- PDF reporting capabilities -->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extent-pdf-report</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.27</version>
+        </dependency>
+        
+        <!-- Logging dependencies -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <profiles>
+        <profile>
+            <id>headless</id>
+            <properties>
+                <selenium.headless>true</selenium.headless>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.26</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M9</version>
+                <configuration>
+                    <properties>
+                        <configurationParameters>
+                            cucumber.junit-platform.naming-strategy=long
+                        </configurationParameters>
+                    </properties>
+                </configuration>
+            </plugin>
+            <!-- Execute custom reports after test completion -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-screenshot-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>bash</executable>
+                            <arguments>
+                                <argument>-c</argument>
+                                <argument>
+                                    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+                                    OUTPUT_DIR="target/screenshot-report-$TIMESTAMP"
+                                    mkdir -p "$OUTPUT_DIR/screenshots"
+                                    
+                                    echo "Creating screenshot report at: $OUTPUT_DIR"
+                                    
+                                    # Start HTML report
+                                    cat > "$OUTPUT_DIR/index.html" &lt;&lt; EOL
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Cucumber Selenium Test Report with Screenshots&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #2c3e50; }
+        h2 { color: #3498db; margin-top: 30px; }
+        .screenshot { margin: 20px 0; border: 1px solid #ddd; padding: 10px; }
+        .screenshot img { max-width: 90%; border: 1px solid #eee; }
+        .timestamp { color: #7f8c8d; font-size: 0.8em; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Test Execution Screenshots Report&lt;/h1&gt;
+    &lt;p class="timestamp"&gt;Generated on: $(date)&lt;/p&gt;
+    &lt;h2&gt;Test Screenshots&lt;/h2&gt;
+EOL
+                                    
+                                    # Look for screenshots in extent-reports folders (which might have spaces in names)
+                                    COUNT=0
+                                    find target -type d -name "extent-reports*" | while read -r dir; do
+                                        if [ -d "$dir" ]; then
+                                            find "$dir" -name "*.png" -o -name "*.jpg" | while read -r file; do
+                                                if [ -f "$file" ]; then
+                                                    filename=$(basename "$file")
+                                                    cp "$file" "$OUTPUT_DIR/screenshots/$filename"
+                                                    
+                                                    # Add to HTML report
+                                                    cat >> "$OUTPUT_DIR/index.html" &lt;&lt; EOL
+    &lt;div class="screenshot"&gt;
+        &lt;p&gt;&lt;strong&gt;Screenshot:&lt;/strong&gt; $filename&lt;/p&gt;
+        &lt;img src="screenshots/$filename" alt="Screenshot"&gt;
+    &lt;/div&gt;
+EOL
+                                                    echo "Added screenshot: $filename"
+                                                    COUNT=$((COUNT+1))
+                                                fi
+                                            done
+                                        fi
+                                    done
+                                    
+                                    # Finish HTML
+                                    cat >> "$OUTPUT_DIR/index.html" &lt;&lt; EOL
+    &lt;p&gt;Total screenshots found: $COUNT&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+EOL
+                                    
+                                    echo "Report generated with $COUNT screenshots"
+                                    echo "Report available at: $OUTPUT_DIR/index.html"
+                                    echo "Full report path: $(pwd)/$OUTPUT_DIR/index.html"
+                                    
+                                    # Create a link to the latest report
+                                    ln -sf "$OUTPUT_DIR" target/latest-screenshot-report
+                                    echo "Link to latest report created at: target/latest-screenshot-report"
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
