@@ -10,6 +10,15 @@ name: Java CI with Maven
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Git branch to test'
+        required: true
+        default: 'main'
+      cucumberTags:
+        description: 'Cucumber tags to run'
+        required: false
+        default: '@SmokeTest'
   push:
     branches: [ "main" ]
   pull_request:
