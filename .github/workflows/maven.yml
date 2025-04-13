@@ -30,3 +30,9 @@ jobs:
     - name: Build with Maven
       run: mvn clean test
 
+    - name: Archive report
+      uses: actions/upload-artifacts@v4
+      with: 
+        name: cucumberHtml
+        path: ./cucumber-reports/*.html
+
